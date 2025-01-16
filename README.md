@@ -64,10 +64,10 @@
 
 #### 개념
 - **Kubernetes 업데이트 전략**: Rolling Update, Blue-Green Deployment 등
-- **CI/CD 파이프라인 전체 흐름**: 코드 변경 → Git push → Jenkins 빌드 → Docker 이미지 생성 → Kubernetes 업데이트
+- **CI/CD 파이프라인 전체 흐름**: 코드 변경 → Git push → GitHub Action 빌드 → Docker 이미지 생성 → Kubernetes 업데이트
 
 #### 실습
-- Git push 시 Jenkins에서 빌드 → Docker Registry 등록 → Kubernetes 배포로 이어지는 파이프라인 완성
+- Git push 시 GitHub Action에서 빌드 → Docker Registry 등록 → Kubernetes 배포로 이어지는 파이프라인 완성
 
 ---
 
@@ -79,7 +79,6 @@
 
 2. **실습 환경 준비**
    - Docker 및 Kubernetes 설치: [Docker 설치 가이드](https://docs.docker.com/get-docker/), [Minikube 설치 가이드](https://minikube.sigs.k8s.io/docs/start/)
-   - Jenkins 설치: [Jenkins 설치 가이드](https://www.jenkins.io/doc/book/installing/)
 
 3. **교육 진행**
    - 각 실습 내용을 참고하여 Git, CI/CD, Docker, Kubernetes 등을 체험합니다.
@@ -89,7 +88,8 @@
 
 ## 프로젝트 구조
 ```
-├── .github/workflows # github action 관련 설정 파일 
+├── .github/workflows # github action 관련 설정 파일
+├── slides/ # 발표 슬라이드 모음
 ├── kubernetes/ # Kubernetes 관련 YAML 파일 
 ├── server.c # C HTTP 서버 코드 
 ├── Dockerfile # 컨테이너 이미지를 생성하기 위한 Dockerfile 
