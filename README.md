@@ -13,11 +13,24 @@
 ### 1~2주차: Git & Branch 전략
 
 #### 개념
-- **Version Control System (VCS)**: git의 기본 사용법 (stage, commit, push 등)
-- **협업 전략**: branch, tag, GitHub flow, GitLab flow 등
+- **Version Control System (VCS)**: git의 기본 사용법 (add, commit, push 등)
+- **협업 전략**: branch 관련 사용법 (branch, switch, merge 등)
 
-#### 실습
-- C HTTP 서버 코드를 활용하여 3명이 각자 기능을 구현하고 Pull Request를 통해 병합하는 협업 연습
+#### 실습 과제
+현재 있는 server.c 코드 활용하여
+1. "/" 경로에서만 응답이 나오게 만들기
+2. 경로에 없는 페이지에서는 404 Not Found page 만들기
+3. "/rtos" 페이지에서 다른 안내 문구 출력하기
+4. "/", "/rtos"가 아닌 경로인 "/<param>"로 접속 시엔 param을 print해서 보여주기
+
+이를 4명이 브랜치를 활용하여 작업 분배.  
+4명의 작업이 끝난 이후엔 4명의 작업을 merge 한 이후 `step1`이라는 브랜치를 만들어 push하기
+
+
+**보충 설명**
+  - [서버 코드](./server.c)를 참고하여 서버를 빌드하고 실행합니다.
+  - `gcc server.c -o server && ./server`를 통해 로컬에서 http://localhost:8080 에 접속하여 서버 응답을 확인할 수 있습니다.
+- C언어 학습이 목표가 아니기에 AI를 써서 기능 구현을 해도 무방합니다.
 
 ---
 
@@ -68,21 +81,6 @@
 
 #### 실습
 - Git push 시 GitHub Action에서 빌드 → Docker Registry 등록 → Kubernetes 배포로 이어지는 파이프라인 완성
-
----
-
-## 사용법
-
-1. **C HTTP 서버 실행**
-   - [서버 코드](./server.c)를 참고하여 서버를 빌드하고 실행합니다.
-   - `gcc server.c -o server && ./server`를 통해 로컬에서 서버를 확인할 수 있습니다.
-
-2. **실습 환경 준비**
-   - Docker 및 Kubernetes 설치: [Docker 설치 가이드](https://docs.docker.com/get-docker/), [Minikube 설치 가이드](https://minikube.sigs.k8s.io/docs/start/)
-
-3. **교육 진행**
-   - 각 실습 내용을 참고하여 Git, CI/CD, Docker, Kubernetes 등을 체험합니다.
-   - 각 과정의 실습과제를 수행하며 Cloud Native 개발 환경을 이해합니다.
 
 ---
 
