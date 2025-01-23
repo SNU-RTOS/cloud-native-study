@@ -1,14 +1,14 @@
-# SNU RTOS LAB Cloud Native 교육
+# SNU RTOS LAB Cloud Native 스터디
 
-이 프로젝트는 간단한 C HTTP 서버를 활용하여 Cloud Native 방법론의 기본 요소인 **Git**, **CI/CD**, **컨테이너화**, 그리고 **Kubernetes**를 학습하기 위한 교육 과정입니다. 
+이 프로젝트는 간단한 C HTTP 서버를 활용하여 Cloud Native 방법론의 기본 요소인 **Git**, **컨테이너화**, **Kubernetes**, **CI/CD**를 학습하기 위한 스터디 과정입니다. 
 
-## 교육 목표
+## 스터디 목표
 - Cloud Native 환경에서 소프트웨어 개발 및 배포 프로세스를 체험하고 이해하기
-- Git 및 협업 전략, Jenkins를 이용한 CI/CD 파이프라인, Docker 컨테이너화, Kubernetes 오케스트레이션의 기초를 습득
+- Git 및 협업 전략, Docker 컨테이너화, Kubernetes 오케스트레이션의 기초, GitHub Actions를 활용한 CI/CD 파이프라인 구축을 습득
 
 ---
 
-## 교육 과정 개요
+## 스터디 과정 개요
 
 ### 1~2주차: Git & Branch 전략
 
@@ -18,20 +18,25 @@
 
 #### 실습 과제
 현재 있는 server.c 코드 활용하여
-1. "/" 경로에서만 응답이 나오게 만들기
-2. 경로에 없는 페이지에서는 404 Not Found page 만들기
-3. "/rtos" 페이지에서 다른 안내 문구 출력하기
-4. "/", "/rtos"가 아닌 경로인 "/<param>"로 접속 시엔 param을 print해서 보여주기
+1. "/" 경로에서만 `Hello, World!` 응답이 나오게 하기
+2. "/rtos" 경로에서만 `Hello, RTOS!` 응답이 나오게 하기
+3. "/param\/\<param\>"로 접속 시엔 `Hello, <param>`<param>에 param을 print해서 보여주기
+4. "/", "/rtos", "/param/" 이외 경로에선 404 Not Found page 만들기
 
-이를 4명이 브랜치를 활용하여 작업 분배.  
-4명의 작업이 끝난 이후엔 4명의 작업을 merge 한 이후 `step1`이라는 브랜치를 만들어 push하기
+
+이를 4명이 각 번호에 맞게 작업 분배, 개별 브랜치로 만들어서 push하기  
+4명의 작업이 끝난 이후엔 4명의 작업을 각자가 local에서 fetch한 이후 merge 하기  
+merge가 다 끝난 이후엔 `step1`이라는 이름으로 한 명이 push하기
+
 
 
 **보충 설명**
   - [서버 코드](./server.c)를 참고하여 서버를 빌드하고 실행합니다.
-  - `gcc server.c -o server && ./server`를 통해 로컬에서 http://localhost:8080 에 접속하여 서버 응답을 확인할 수 있습니다.
-- C언어 학습이 목표가 아니기에 AI를 써서 기능 구현을 해도 무방합니다.
-
+  - `gcc server.c -o server && ./server`를 통해 로컬에서 http://127.0.0.1:8080 에 접속하여 서버 응답을 확인할 수 있습니다.
+  - 현재는 "/" 뿐만 아니라 모든 경로에서 "Hello, World!"가 출력됩니다.
+  - C언어 학습이 목표가 아니기에 AI를 써서 기능 구현을 해도 무방합니다.
+  - 다른 사람의 작업 브랜치를 로컬로 가져오기 위해 `git fetch`라는 커맨드를 추가로 학습해야 합니다.
+    - https://opentutorials.org/course/3842/23969
 ---
 
 ### 3~4주차: Docker를 통한 컨테이너화
@@ -43,7 +48,7 @@
 #### 실습
 - Docker 기초 명령 학습
 - C HTTP 서버를 Dockerfile로 컨테이너화하여 이미지 생성
-- Jenkins를 통한 빌드 및 Docker Registry 연동
+- GitHub Actions 통한 빌드 및 Docker Registry 연동
 
 ---
 
