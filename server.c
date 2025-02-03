@@ -28,9 +28,20 @@ int main()
   while ((new_socket = accept(server_fd, (struct sockaddr *)&address, (socklen_t *)&addrlen)))
   {
     read(new_socket, buffer, 1024);
-    write(new_socket, response, strlen(response));
+
+    // 요청 경로 추출
+    char *path = strtok(buffer, " "); // "GET"
+    path = strtok(NULL, " ");         // 요청된 경로 (예: "/")
+
+    // "/" 경로가 아닌 경우 응답하지 않음
+    if (path != NULL && strcmp(path, "/") == 0)
+    {
+      write(new_socket, response, strlen(response));
+    }
+
     close(new_socket);
   }
 
   return 0;
 }
+
