@@ -40,7 +40,7 @@ void handle_request(int client_socket) {
                  "Content-Type: text/plain\r\n"
                  "Content-Length: %ld\r\n"
                  "\r\n"
-                 "Hello, %s!",
+                 "Hello, %.900s!",
                  strlen(param) + 8, param);
     } else {
         // **4번 기능: 404 Not Found 응답 추가**
