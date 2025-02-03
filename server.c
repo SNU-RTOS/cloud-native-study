@@ -10,12 +10,7 @@ int main()
   struct sockaddr_in address;
   int addrlen = sizeof(address);
   char buffer[1024] = {0};
-  char *response =
-      "HTTP/1.1 200 OK\n"
-      "Content-Type: text/plain\n"
-      "Content-Length: 13\n\n"
-      "Hello, World!";
-
+  
   server_fd = socket(AF_INET, SOCK_STREAM, 0);
   address.sin_family = AF_INET;
   address.sin_addr.s_addr = INADDR_ANY;
@@ -25,10 +20,28 @@ int main()
   listen(server_fd, 3);
 
   printf("Server running on port 8080...\n");
+  
   while ((new_socket = accept(server_fd, (struct sockaddr *)&address, (socklen_t *)&addrlen)))
   {
     read(new_socket, buffer, 1024);
-    write(new_socket, response, strlen(response));
+    
+    // 요청된 경로가 /rtos인지 확인
+    if (strncmp(buffer, "GET /rtos ", 10) == 0) {
+      char *response =
+          "HTTP/1.1 200 OK\n"
+          "Content-Type: text/plain\n"
+          "Content-Length: 13\n\n"
+          "Hello, RTOS!";
+      write(new_socket, response, strlen(response));
+    } else {
+      char *not_found =
+          "HTTP/1.1 404 Not Found\n"
+          "Content-Type: text/plain\n"
+          "Content-Length: 9\n\n"
+          "Not Found";
+      write(new_socket, not_found, strlen(not_found));
+    }
+    
     close(new_socket);
   }
 
