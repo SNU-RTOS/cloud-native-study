@@ -30,7 +30,6 @@ int main()
     if(path == NULL){
       path = "/";
     }
-    
     // "/"
     if(strcmp(path, "/") == 0){
       char *response = 
